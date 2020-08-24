@@ -1,0 +1,116 @@
+# Configurations for PolyOrder
+---
+Version:
+    version     : 11.1
+    format      : YAML
+IO:
+    base_dir        : ./
+    data_file       : scft_out
+    param_file      : param_out
+    q_file          : q_out
+    is_display      : true
+    is_save_param   : false
+    is_save_data    : true
+    is_save_q       : false
+    display_interval: 10
+    record_interval : 10
+    save_interval   : 20000
+Model:
+    model           : AB3+A
+    n_chain         : 2
+    n_block         : [4, 1]
+    a               : [1.0, 1.0, 1.0, 1.0, 1.0]
+    f               : [0.4, 0.2, 0.2, 0.2, 0.35]
+    phi             : [0.6, 0.4]
+    chiN            : [19, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    is_compressible : false
+    # for polymer brush
+    graft_density   :
+    # implicit solvent
+    excluded_volume :
+UnitCell:
+    CrystalSystemType   : LAM
+    a                   : 1.0
+    b                   :
+    c                   :
+    alpha               :
+    beta                :
+    gamma               :
+    # for gyroid use only, not implemented in PolyOrder::Config
+    SymmetryGroup       :
+    N_list              : []
+    c_list              : []
+Grid:
+    dimension               : 1
+    Lx                      : 1
+    Ly                      : 1
+    Lz                      : 1
+    # confinement
+    confine_geometry        : None
+    grid_type_x             : Regular
+    grid_type_y             : Regular
+    grid_type_z             : Regular
+    BC_coefficients_left    : []
+    BC_coefficients_right   : []
+    # grid initialization
+    scft_init_type          : field
+    gridInitType            : constant
+    random_seed             :
+    field_data              : 0.0
+Algorithm_MDE:
+    algorithm       : RQM4
+    f_mode          : fix-Ms
+    ds              : [0.01, 0.01, 0.01, 0.01, 0.01]
+    Ms              : [41, 21, 21, 21, 21]
+    etdrk4_scheme   : Cox-Matthews
+    etdrk4_M        :
+Algorithm_SCFT:
+    algorithm           : EM
+    # lam                 : [0.1, 0.1, 0.1, 0.1, 0.1, 1.0]  # for EM/ETDRK4
+    lam                : [0.9, 0.9, 0.9, 0.9, 0.9, 5.0]  # for Anderson
+    min_iter            : 10
+    max_iter            : 500
+    thresh_H            : 1.0e-8
+    thresh_residual     : 1.0e-8
+    thresh_incomp       :
+    n_Anderson_mixing   : 20
+Algorithm_Cell_Optimization:
+    algorithm       : Single
+    tol_cell        : 1.0e-5
+    max_iter_cell   : 30
+    batch_cell_min  : []
+    batch_cell_step : []
+    batch_cell_max  : []
+Algorithm_Contour_Integration:
+    algorithm       : Simpson
+Algorithm_Charge_PBE:
+    algo_charge_pbe     : Multigrid
+    dielectric_constant : 1
+    charge_distribution : 1
+    density_integration : 1
+    fft2mg_mode         : 0
+    fft2mg_interp       : 1
+
+# Configurations for automation scripts.
+---
+Batch:
+    section     : UnitCell
+    name        : ["lx", "ly"]
+    name_min    : [2.5, 2.5]
+    name_step   : [0.5, 0.5]
+    var         : ["a", "b"]
+    min         : [2.5, 2.5]
+    step        : [0.5, 0.5]
+    max         : [5.0, 5.0]
+xscft:
+    nodeFile        : nodes
+    activeBatchPath : /export/home/lyx/simulation/active_batch/
+    exeName         : scft_confine
+    exePath         : /export/home/lyx/opt/lyx/polyorder/build/bin/
+    dataPath        : .
+    dataPathSuffix  : -0
+    batchScriptVar  : s
+    batchScriptMin  : 0.0
+    batchScriptStep : 0.01
+    batchScriptMax  : 0.1
+    waitTime        : 600

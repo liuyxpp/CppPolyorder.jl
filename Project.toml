@@ -3,6 +3,11 @@ uuid = "c49c1de5-c720-4b6d-ae58-d24743c7f647"
 authors = ["Yi-Xin Liu <lyx@fudan.edu.cn> and contributors"]
 version = "0.1.0"
 
+[deps]
+CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
+Optim = "429524aa-4258-5aef-a3af-852621145aeb"
+YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
+
 [compat]
 julia = "1"
 
