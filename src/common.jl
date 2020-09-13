@@ -16,6 +16,7 @@ end
 
 function init_model(config_file)
     config = parse_config(config_file)
+
     modeltype = config["Model"]["model"]
     if uppercase(modeltype) == "AB" || uppercase(modeltype) == "AB"
         model = Polyorder.Model_AB(config_file)
@@ -49,7 +50,7 @@ function run!(model, config)
         H = Polyorder.H(model)
         err = Polyorder.residual_error(model)
         if i % display_interval == 0
-            println("Steps: ", i)
+            @info "SCFT iteration: $i"
             Polyorder.display(model)
         end
         if err < thresh_residual
@@ -71,7 +72,11 @@ function scft(x, model, config)
         c = config["UnitCell"]["c"]
         config["UnitCell"]["c"] = (x / a) * c
     end
+
+    @info "SCFT optimize cell: a = $a"
+
     F = run!(model, config)
+
     @assert F !== Inf "SCFT cannot achieve accuray within max_iter steps!"
 
     return F

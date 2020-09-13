@@ -11,7 +11,7 @@ function free_energy!(model, config)
         F = run!(model, config)
     elseif cellopt == "BRENT" || cellopt == "AUTO"
         res = optimize_cell!(model, config)
-        config["Algorithm_Cell_Optimization"]["cell_guess"][1] = minimizer(res)
+        config["Algorithm_Cell_Optimization"]["cell_guess"][1] = Optim.minimizer(res)
         # F = minimum(res)
     end
 
@@ -24,6 +24,8 @@ end
 Compute the grand potential and its first order derivatives. Note the same polymer model is assumed is for model1 and model2 but for different phases and chain volume fractions. If model2 and config2 are also specified. Theire consistency with model1 and config1 is not checked! Please make sure they describe the same polymer model!
 
 Only applicable to two-chain two-component system, e.g. AB/A, AB3/A etc.
+
+This method is deprecated and replaced by PhaseDiagram.jl: gibbs_free_energy.
 """
 function grand_potential(ϕ₁, ϕ₂, ϕ₀, model1, config1; model2=nothing, config2=nothing)
     if model2 === nothing
