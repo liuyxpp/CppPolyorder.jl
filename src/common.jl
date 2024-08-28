@@ -1,13 +1,13 @@
 """
     parse_config(config_file)
 
-Generate a YAML.jl config object by first passing `config_file` to Polyorder to do any configuration checks for its consistency. Here ·config_file` is path string.
+Generate a YAML.jl config object by first passing `config_file` to CppPolyorder to do any configuration checks for its consistency. Here ·config_file` is path string.
 """
 function parse_config(config_file)
-    config = Polyorder.Config(config_file)
+    config = CppPolyorder.Config(config_file)
     data = StdString()
-    # @show Polyorder.version(config)
-    Polyorder.get_config_data(config, CxxRef(data))
+    # @show CppPolyorder.version(config)
+    CppPolyorder.get_config_data(config, CxxRef(data))
     # @show data
     config = YAML.load(String(data))
 
@@ -19,13 +19,13 @@ function init_model(config_file)
 
     modeltype = config["Model"]["model"]
     if uppercase(modeltype) == "AB" || uppercase(modeltype) == "AB"
-        model = Polyorder.Model_AB(config_file)
+        model = CppPolyorder.Model_AB(config_file)
     elseif uppercase(modeltype) == "AB_A" || uppercase(modeltype) == "AB+A"
-        model = Polyorder.Model_AB_A(config_file)
+        model = CppPolyorder.Model_AB_A(config_file)
     elseif uppercase(modeltype) == "AB3_A" || uppercase(modeltype) == "AB3+A"
-        model = Polyorder.Model_AB3_A(config_file)
+        model = CppPolyorder.Model_AB3_A(config_file)
     else
-        error("Model $modeltype is not supported by Polyorder!")
+        error("Model $modeltype is not supported by CppPolyorder!")
     end
 
     return model, config
@@ -33,7 +33,7 @@ end
 
 function reset_model!(model, config)
     config_str = StdString(YAML.write(config))
-    Polyorder.reset(model, CxxRef(config_str))
+    CppPolyorder.reset(model, CxxRef(config_str))
 end
 
 function run!(model, config)
@@ -45,13 +45,13 @@ function run!(model, config)
     end
     thresh_residual = config["Algorithm_SCFT"]["thresh_residual"]
     for i in 1:max_iter
-        Polyorder.update(model)
-        Hi = Polyorder.Hi(model)
-        H = Polyorder.H(model)
-        err = Polyorder.residual_error(model)
+        CppPolyorder.update(model)
+        Hi = CppPolyorder.Hi(model)
+        H = CppPolyorder.H(model)
+        err = CppPolyorder.residual_error(model)
         if i % display_interval == 0
             @info "SCFT iteration: $i"
-            Polyorder.display(model)
+            CppPolyorder.display(model)
         end
         if err < thresh_residual
             return H + Hi

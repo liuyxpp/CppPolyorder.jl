@@ -1,12 +1,12 @@
 ```@meta
-CurrentModule = Polyorder
+CurrentModule = CppPolyorder
 ```
 
-# Polyorder
+# CppPolyorder
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [Polyorder]
+Modules = [CppPolyorder]
 ```

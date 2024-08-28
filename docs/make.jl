@@ -1,14 +1,14 @@
-using Polyorder
+using CppPolyorder
 using Documenter
 
 makedocs(;
-    modules=[Polyorder],
+    modules=[CppPolyorder],
     authors="Yi-Xin Liu <lyx@fudan.edu.cn> and contributors",
-    repo="https://github.com/liuyxpp/Polyorder.jl/blob/{commit}{path}#L{line}",
-    sitename="Polyorder.jl",
+    repo="https://github.com/liuyxpp/CppPolyorder.jl/blob/{commit}{path}#L{line}",
+    sitename="CppPolyorder.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://liuyxpp.github.io/Polyorder.jl",
+        canonical="https://liuyxpp.github.io/CppPolyorder.jl",
         assets=String[],
     ),
     pages=[
@@ -17,5 +17,5 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/liuyxpp/Polyorder.jl",
+    repo="github.com/liuyxpp/CppPolyorder.jl",
 )

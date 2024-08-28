@@ -15,7 +15,7 @@ function free_energy!(model, config)
         # F = minimum(res)
     end
 
-    return Polyorder.H(model)+Polyorder.Hi(model), Polyorder.mu(model)
+    return CppPolyorder.H(model)+CppPolyorder.Hi(model), CppPolyorder.mu(model)
 end
 
 """

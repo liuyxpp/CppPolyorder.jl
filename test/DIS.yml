@@ -1,4 +1,4 @@
-# Configurations for PolyOrder
+# Configurations for CppPolyorder
 ---
 Version:
     version     : 11.1
@@ -36,7 +36,7 @@ UnitCell:
     alpha               :
     beta                :
     gamma               :
-    # for gyroid use only, not implemented in PolyOrder::Config
+    # for gyroid use only, not implemented in CppPolyorder::Config
     SymmetryGroup       :
     N_list              : []
     c_list              : []
@@ -106,7 +106,7 @@ xscft:
     nodeFile        : nodes
     activeBatchPath : /export/home/lyx/simulation/active_batch/
     exeName         : scft_confine
-    exePath         : /export/home/lyx/opt/lyx/polyorder/build/bin/
+    exePath         : /export/home/lyx/opt/lyx/CppPolyorder/build/bin/
     dataPath        : .
     dataPathSuffix  : -0
     batchScriptVar  : s

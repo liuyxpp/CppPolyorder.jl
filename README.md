@@ -1,13 +1,13 @@
-# Polyorder [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://liuyxpp.github.io/Polyorder.jl/stable) [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://liuyxpp.github.io/Polyorder.jl/dev) [![Build Status](https://github.com/liuyxpp/Polyorder.jl/workflows/CI/badge.svg)](https://github.com/liuyxpp/Polyorder.jl/actions) [![Build Status](https://travis-ci.com/liuyxpp/Polyorder.jl.svg?branch=master)](https://travis-ci.com/liuyxpp/Polyorder.jl) [![Build Status](https://ci.appveyor.com/api/projects/status/github/liuyxpp/Polyorder.jl?svg=true)](https://ci.appveyor.com/project/liuyxpp/Polyorder-jl) [![Coverage](https://codecov.io/gh/liuyxpp/Polyorder.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/liuyxpp/Polyorder.jl)
+# CppPolyorder [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://liuyxpp.github.io/CppPolyorder.jl/stable) [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://liuyxpp.github.io/CppPolyorder.jl/dev) [![Build Status](https://github.com/liuyxpp/CppPolyorder.jl/workflows/CI/badge.svg)](https://github.com/liuyxpp/CppPolyorder.jl/actions) [![Build Status](https://travis-ci.com/liuyxpp/CppPolyorder.jl.svg?branch=master)](https://travis-ci.com/liuyxpp/CppPolyorder.jl) [![Build Status](https://ci.appveyor.com/api/projects/status/github/liuyxpp/CppPolyorder.jl?svg=true)](https://ci.appveyor.com/project/liuyxpp/CppPolyorder-jl) [![Coverage](https://codecov.io/gh/liuyxpp/CppPolyorder.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/liuyxpp/CppPolyorder.jl)
 
-This package provides an interface to essential functionalities of C++ [Polyorder](https://github.com/liuyxpp/polyorder) library.
+This package provides an interface to essential functionalities of C++ [CppPolyorder](https://github.com/liuyxpp/CppPolyorder) library.
 
 ## Install
 
 In Julia REPL, press `]` to enter the Package mode, then run the following command.
 
 ```
-(v1.5) pkg> add https://github.com/liuyxpp/Polyorder.jl
+(v1.5) pkg> add https://github.com/liuyxpp/CppPolyorder.jl
 ```
 
 ## Interface
@@ -22,7 +22,7 @@ Model_AB_A
 Model_AB3_A
 ```
 
-### Functions from C++ Polyorder library
+### Functions from C++ CppPolyorder library
 
 ```julia
 H
@@ -67,4 +67,4 @@ grand_potential
 
 ## Links
 
-- [Documentation](https://liuyxpp.github.io/Polyorder.jl)
+- [Documentation](https://liuyxpp.github.io/CppPolyorder.jl)
